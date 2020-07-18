@@ -1,6 +1,5 @@
-package board
+package squareBoard
 
-import board.Direction.*
 import org.junit.Assert
 import org.junit.FixMethodOrder
 import org.junit.Test
@@ -131,10 +130,10 @@ class TestSquareBoard {
         with(createSquareBoard(4)) {
             val cell = getCellOrNull(2, 3)
             Assert.assertNotNull("The board of width 4 should contain the cell (2, 3).", cell)
-            Assert.assertEquals(neighbourMessage(cell!!, UP), "(1, 3)", cell.getNeighbour(UP).toString())
-            Assert.assertEquals(neighbourMessage(cell, DOWN), "(3, 3)", cell.getNeighbour(DOWN).toString())
-            Assert.assertEquals(neighbourMessage(cell, LEFT), "(2, 2)", cell.getNeighbour(LEFT).toString())
-            Assert.assertEquals(neighbourMessage(cell, RIGHT), "(2, 4)", cell.getNeighbour(RIGHT).toString())
+            Assert.assertEquals(neighbourMessage(cell!!, Direction.UP), "(1, 3)", cell.getNeighbour(Direction.UP).toString())
+            Assert.assertEquals(neighbourMessage(cell, Direction.DOWN), "(3, 3)", cell.getNeighbour(Direction.DOWN).toString())
+            Assert.assertEquals(neighbourMessage(cell, Direction.LEFT), "(2, 2)", cell.getNeighbour(Direction.LEFT).toString())
+            Assert.assertEquals(neighbourMessage(cell, Direction.RIGHT), "(2, 4)", cell.getNeighbour(Direction.RIGHT).toString())
         }
     }
 
@@ -143,10 +142,10 @@ class TestSquareBoard {
         with(createSquareBoard(4)) {
             val cell = getCellOrNull(4, 4)
             Assert.assertNotNull("The board of width 4 should contain the cell (4, 4).", cell)
-            Assert.assertEquals(neighbourMessage(cell!!, UP), "(3, 4)", cell.getNeighbour(UP).toString())
-            Assert.assertEquals(neighbourMessage(cell, LEFT), "(4, 3)", cell.getNeighbour(LEFT).toString())
-            Assert.assertEquals(neighbourMessage(cell, DOWN), null, cell.getNeighbour(DOWN))
-            Assert.assertEquals(neighbourMessage(cell, RIGHT), null, cell.getNeighbour(RIGHT))
+            Assert.assertEquals(neighbourMessage(cell!!, Direction.UP), "(3, 4)", cell.getNeighbour(Direction.UP).toString())
+            Assert.assertEquals(neighbourMessage(cell, Direction.LEFT), "(4, 3)", cell.getNeighbour(Direction.LEFT).toString())
+            Assert.assertEquals(neighbourMessage(cell, Direction.DOWN), null, cell.getNeighbour(Direction.DOWN))
+            Assert.assertEquals(neighbourMessage(cell, Direction.RIGHT), null, cell.getNeighbour(Direction.RIGHT))
         }
     }
 
@@ -176,7 +175,7 @@ class TestSquareBoard {
     fun test19TheSameCell() {
         val board = createSquareBoard(4)
         val cell = board.getCell(1, 1)
-        val first = board.run { cell.getNeighbour(RIGHT) }
+        val first = board.run { cell.getNeighbour(Direction.RIGHT) }
         val second = board.getCell(1, 2)
         Assert.assertTrue("'getNeighbour' shouldn't recreate the 'Cell' instance.\n" +
                 "Create only 'width * width' cells; all the functions working with cells " +
